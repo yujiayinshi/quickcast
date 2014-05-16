@@ -25,17 +25,15 @@ public class UploadController {
 		 
 	        String path = request.getSession().getServletContext().getRealPath("upload");
 	        String fileName = upload_token+".jpg";
-	        System.out.println("开始"+fileName); 
+	        System.out.println("锟斤拷始"+fileName); 
 	        System.out.println(path);  
 	        File targetFile = new File(path, fileName);  
 //	        if(!targetFile.exists()){  
 //	            targetFile.mkdirs();  
 //	        }  
-	  
-	        //保存  
 	        try {  
 	            file.transferTo(targetFile);  
-	//            model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
+//            model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);
 	        } catch (Exception e) {  
 	        	    
 	        } 

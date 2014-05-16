@@ -31,7 +31,7 @@ public class Friend_ListController {
 	private Encoding encoding;
 	
 	
-    //ÉêÇëºÃÓÑ
+    //ç”³è¯·å¥½å‹
 	@RequestMapping(params="method=imp_friend_list_insert")	
 	public @ResponseBody String imp_friend_list_insert(@RequestBody Friend_List friend_list){
 		
@@ -56,7 +56,7 @@ public class Friend_ListController {
 	}
 	
 	
-	//Í¬Òâ»òÕß¾Ü¾øÌí¼ÓºÃÓÑ
+	//æ‹’ç»æˆ–è€…åŒæ„æ·»åŠ ä¸ºå¥½å‹
 	@RequestMapping(params="method=imp_friend_list_update")
 	public @ResponseBody String imp_friend_list_update(@RequestBody Friend_List friend_list){
 		
@@ -87,7 +87,7 @@ public class Friend_ListController {
 		return result_temp;	
 	}
 	
-	//²é¿´ºÃÓÑÉêÇë
+	//æŸ¥çœ‹å¥½å‹ç”³è¯·
 	@RequestMapping(params="method=imp_friend_list_apply")
 	public @ResponseBody String imp_friend_list_apply(@RequestBody Friend_List friend_list){
 		Map data = new HashMap();
@@ -112,11 +112,7 @@ public class Friend_ListController {
 			data.put("partner_name", user_reg.getCn_tname());
 			data.put("partner_email", user_reg.getEmail());
 			data.put("user_type",user_reg.getUser_type());
-			json_result.put(data);
-		    System.out.println("-----------rlts_id:"+friend_listInstance.getRlts_id()+"---------");
-		    System.out.println("-----------partner_id:"+friend_listInstance.getPartner_id()+"---------");
-		    System.out.println("-----------self_id:"+friend_listInstance.getSelf_id()+"---------");
-		    System.out.println("-----------status:"+friend_listInstance.getStatus()+"---------");		
+			json_result.put(data);	
 		}	
 		
 		String result = "{\"friend_list\":"+ json_result +"}";
@@ -124,7 +120,7 @@ public class Friend_ListController {
 		return result_temp;	
 	}
 	
-	//²é¿´ºÃÓÑÁĞ±í£¬ÕÒ³öºÃÓÑ
+	//æŸ¥çœ‹å¥½å‹åˆ—è¡¨
 	@RequestMapping(params="method=imp_friend_list_queryBySelfId")
 	public@ResponseBody String imp_friend_list_queryBySelfId(@RequestBody Friend_List friend_list){
 		
@@ -144,11 +140,7 @@ public class Friend_ListController {
 			User_Reg user_reg = userservice.queryByUserId(friend_listInstance.getPartner_id());
 			data.put("partner_name", user_reg.getCn_tname());
 			data.put("partner_email", user_reg.getEmail());
-			json_result.put(data);
-		    System.out.println("-----------rlts_id:"+friend_listInstance.getRlts_id()+"---------");
-		    System.out.println("-----------partner_id:"+friend_listInstance.getPartner_id()+"---------");
-		    System.out.println("-----------self_id:"+friend_listInstance.getSelf_id()+"---------");
-		    System.out.println("-----------status:"+friend_listInstance.getStatus()+"---------");		
+			json_result.put(data);		
 		}	
 		
 		String result = "{\"friend_list\":"+ json_result +"}";
@@ -156,7 +148,7 @@ public class Friend_ListController {
 		return result_temp;	
 	}
 	
-	//Í¨¹ıĞÕÃûÀ´ËÑË÷£¬ÒÔÌí¼ÓÆäÎªºÃÓÑ
+	//é€šè¿‡å§“åæ¥æŸ¥æ‰¾äººï¼Œä»¥æ·»åŠ ä¸ºå¥½å‹
 	@RequestMapping(params="method=imp_friend_list_queryByName")
 	public@ResponseBody String imp_friend_list_queryByName(@RequestBody User_Reg user_reg){
 		
@@ -178,8 +170,6 @@ public class Friend_ListController {
 			data.put("partner_name", user_regInstacne.getCn_tname());
 			data.put("partner_email", user_regInstacne.getEmail());
 			json_result.put(data);
-		    System.out.println("-----------partner_name:"+user_regInstacne.getCn_tname()+"---------");
-		    System.out.println("-----------partner_email:"+user_regInstacne.getEmail()+"---------");		
 		}	
 		
 		String result = "{\"query\":"+ json_result +"}";
@@ -187,7 +177,7 @@ public class Friend_ListController {
 		return result_temp;	
 	}
 	
-	//Í¨¹ıÓÊÏäÀ´ËÑË÷£¬ÒÔÌí¼ÓÆäÎªºÃÓÑ
+	//é€šè¿‡Emailæ¥æŸ¥æ‰¾äººï¼Œä»¥æ·»åŠ ä¸ºå¥½å‹
 	@RequestMapping(params="method=imp_friend_list_queryByEmail")
 	public@ResponseBody String imp_friend_list_queryByEmail(@RequestBody User_Reg user_reg){
 		
@@ -219,13 +209,7 @@ public class Friend_ListController {
 	@RequestMapping(params="method=imp_friend_list_queryByRltsId")
 	public String imp_friend_list_queryByRltsId(@RequestBody Friend_List friend_list){
 		
-		Friend_List friend_listInstance = friend_listservice.queryByRltsId(friend_list.getRlts_id());
-			
-		System.out.println("-----------rlts_id:"+friend_listInstance.getRlts_id()+"---------");
-		System.out.println("-----------partner_id:"+friend_listInstance.getPartner_id()+"---------");
-		System.out.println("-----------self_id:"+friend_listInstance.getSelf_id()+"---------");
-		System.out.println("-----------status:"+friend_listInstance.getStatus()+"---------");
-		
+		Friend_List friend_listInstance = friend_listservice.queryByRltsId(friend_list.getRlts_id());	
 		return "index";
 	}
 	
@@ -247,7 +231,7 @@ public class Friend_ListController {
 		
 	}
 	
-	//½â³ıºÃÓÑ¹ØÏµ
+	//è§£é™¤å¥½å‹å…³ç³»Ïµ
 	@RequestMapping(params="method=imp_friend_list_deleteBySelfId")
 	public @ResponseBody String imp_friend_list_deleteBySelfId(@RequestBody Friend_List friend_list){
 
@@ -272,7 +256,7 @@ public class Friend_ListController {
 		
 	}
 	
-	//ºÃÓÑÈ¦
+	//ï¿½ï¿½ï¿½ï¿½È¦
 	@RequestMapping(params="method=display_friendsarray")
 	public @ResponseBody String display_friendsarray(@RequestBody Friend_List friend_list){
 		Friend_List[] partner = friend_listservice.creat_arraysort(friend_list.getSelf_id());

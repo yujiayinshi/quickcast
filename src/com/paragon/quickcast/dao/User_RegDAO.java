@@ -18,7 +18,7 @@ import com.paragon.quickcast.controller.Checker;
 import com.paragon.quickcast.controller.Encoding;
 import com.paragon.quickcast.entity.User_Reg;
 
-//ÇóÖ°ÕßÊÇ1 ¹ÍÖ÷ÊÇ2  ÁÔÍ·ÊÇ3//
+//1æ±‚èŒè€… 2çŒå¤´ 3å…¬å¸
 
 @Component
 public class User_RegDAO{
@@ -34,15 +34,9 @@ public class User_RegDAO{
 	@Resource
 	private Encoding encoding;
 	
-	
-	/*public void add(User u){
-		System.out.println("UserDao.add()");
-		hibernateTemplate.save(u);
-	}*/
 
 
-    //µÇÂ¼
-	//ÓÃ»§Ãû»òÃÜÂë´íÎó·µ»Ø "wrong",µÇÂ¼³É¹¦·µ»ØÓÃ»§id
+
 	public String login(String user_name,String password){
 		
 		String hql = "FROM User_Reg as user_reg WHERE user_reg.user_name=?";
@@ -109,9 +103,7 @@ public class User_RegDAO{
 	}
 	
 	
-	
-	//²åÈëÓÃ»§ĞÂ×¢²áĞÅÏ¢£»
-	//ÒÔUser_RegÀàÎª´«µİ²ÎÊı£»
+
 	public User_Reg insert(User_Reg user_reg){
 
 		
@@ -128,7 +120,7 @@ public class User_RegDAO{
 		}
     
 	
-	//ÅĞ¶ÏÓÃ»§ÃûÊÇ·ñÖØÃû	
+
 	public String check_username(String username){
 
 		user = null;
@@ -172,17 +164,17 @@ public class User_RegDAO{
 			user = (User_Reg)iter.next();
 			
 		}
-		//·µ»ØÖµ0 ÓÊÏäÒÑ±»×¢²á  1ÓÊÏä¿ÉÓÃ   2ÓÊÏä¸ñÊ½²»ÕıÈ·
+
 		if(user==null){
          boolean isemail = checker.isEmail(email);
          if(isemail){
-			System.out.print("email¿ÉÓÃ");
+			System.out.print("emailï¿½ï¿½ï¿½ï¿½");
             temp="1";
          }
          else temp = "2";
 		}
 		else{
-			System.out.print("emailÒÑ´æÔÚ");
+			System.out.print("emailå¯ç”¨");
 			temp = "0";
 		}
 		result = tojson.tojson(temp);
@@ -235,8 +227,6 @@ public class User_RegDAO{
     	
 	}
 	
-	//¸üĞÂÊı¾İ¿â²Ù×÷
-	//ÒÔUser_RegÀàÎª´«µİ²ÎÊı
 	public void update_type(int user_id,String type){
 		User_Reg user_reg = null;
  		Iterator iterator = null;
@@ -252,7 +242,6 @@ public class User_RegDAO{
  	}
 	
 	public void update(User_Reg user_reg){
-			//µ÷ÓÃhibernateTemplate×Ô´øµÄupdate·½·¨£»
 			hibernateTemplate.update(user_reg);
 	}
 	public HibernateTemplate getHibernateTemplate() {

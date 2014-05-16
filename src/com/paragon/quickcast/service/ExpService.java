@@ -11,7 +11,7 @@ import com.paragon.quickcast.entity.Work_Exp;
 @Service
 public interface ExpService {
 
-	//Work_Exp(QueryBy与DeleteBy通用)
+	//Work_Exp
 	public boolean insert(Work_Exp work_exp);
 		
 	public void update(Work_Exp work_exp);
@@ -40,7 +40,6 @@ public interface ExpService {
 	
 	public void delete(Prj_Exp prj_exp);
 		
-	//通用
 	public List queryByUserId(int user_id);
 	
 	public void deleteByUserId(int user_id);

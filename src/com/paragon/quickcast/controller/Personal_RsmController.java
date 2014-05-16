@@ -16,7 +16,7 @@ import com.paragon.quickcast.entity.Personal_Rsm;
 import com.paragon.quickcast.service.ResumeService;
 
 
-//¸öÈË¼òÀú
+//ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½ï¿½
 @Controller
 @RequestMapping("/personal_rsm.do")
 public class Personal_RsmController {
@@ -29,7 +29,6 @@ public class Personal_RsmController {
 
 	@RequestMapping(params="method=imp_resume_insert")	
 	public @ResponseBody String imp_resume_insert(@RequestBody Personal_Rsm personal_rsm){
-		//Í¨¹ýÊµÌåÀàÀ´·â×°jspÒ³Ãæ
 		
 		String temp = "success";
 		ToJson tojosn = new ToJson();	
@@ -75,7 +74,7 @@ public class Personal_RsmController {
 	public @ResponseBody String imp_resume_queryByUserId(@RequestBody Personal_Rsm personal_rsm){
 		
 		Personal_Rsm rsm = resumeservice.queryByUserId(personal_rsm.getUser_id());
-		System.out.println("¼òÀú±àºÅ£º--------"+rsm.getRsm_id());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½--------"+rsm.getRsm_id());
 		Map data = new HashMap();
 		JSONArray json_result = new JSONArray();
 		data.put("rsm_id", rsm.getRsm_id());

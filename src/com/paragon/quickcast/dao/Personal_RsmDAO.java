@@ -26,11 +26,9 @@ public class Personal_RsmDAO{
 	private HibernateTemplate hibernateTemplate;
 	
 	
-	//插入新的个人简历；
-	//以Personal_Rsm类为传递参数；
+
 	public boolean insert(Personal_Rsm personal_rsm){
-		
-		   //判断用户信息是否存在			   
+			   
 		   hibernateTemplate.save(personal_rsm);
 		   return true;	   
 		   
@@ -41,14 +39,14 @@ public class Personal_RsmDAO{
 	           int bytesum = 0; 
 	           int byteread = 0; 
 	           File oldfile = new File(oldPath); 
-	           if (oldfile.exists()) { //文件存在时 
-	               InputStream inStream = new FileInputStream(oldPath); //读入原文件 
+	           if (oldfile.exists()) {
+	               InputStream inStream = new FileInputStream(oldPath); 
 	               System.out.println(oldPath);
 	               FileOutputStream fs = new FileOutputStream(newPath); 
 	               byte[] buffer = new byte[1444]; 
 	               int length; 
 	               while ( (byteread = inStream.read(buffer)) != -1) { 
-	                   bytesum += byteread; //字节数 文件大小 
+	                   bytesum += byteread; 
 	                   System.out.println(bytesum); 
 	                   fs.write(buffer, 0, byteread); 
 	               } 
@@ -56,7 +54,7 @@ public class Personal_RsmDAO{
 	           } 
 	       } 
 	       catch (Exception e) { 
-	           System.out.println("复制单个文件操作出错"); 
+	           System.out.println("锟斤拷锟狡碉拷锟斤拷锟侥硷拷锟斤拷锟斤拷锟斤拷"); 
 	           e.printStackTrace(); 
 
 	       } 
@@ -67,9 +65,9 @@ public class Personal_RsmDAO{
 	 public static void Copy(String start,String end)
 	    {
 	          try { 
-	                //要拷贝的图片
+	                
 	                 BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(start)));
-	                 //目标的地址
+	                 
 	                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(end))); 
 	                 try { 
 	                     int val = -1; 
@@ -101,8 +99,7 @@ public class Personal_RsmDAO{
 		hibernateTemplate.save(personal_rsm);	
 	}
 	
-	//更新数据库操作
-	//以Personal_Rsm类为传递参数
+
 	public void update(Personal_Rsm personal_rsm){
 		
 		Personal_Rsm rsm = null;
@@ -129,9 +126,7 @@ public class Personal_RsmDAO{
 				
 	}
 	
-	//查找个人简历
-	//传递参数为User_ID
-	//根据User_ID找到Personal_Rsm的全部信息；
+
 	public Personal_Rsm queryByUserId(int user_id){
 		
 		Personal_Rsm personal_rsm = null;
@@ -147,20 +142,19 @@ public class Personal_RsmDAO{
 	}
 	
 	
-	//根据rsm_id查询用户信息
 	public Personal_Rsm queryByRsmId(int rsm_id){
 		
 		return hibernateTemplate.get(Personal_Rsm.class, rsm_id);	
 		
 	}
 	
-	//删除用户信息，但是传进来的参数是Personal_Rsm类，一般使用下面的根据User_ID执行删除；
+
 	public void delete(Personal_Rsm personal_rsm){
 		
 		hibernateTemplate.delete(personal_rsm);
 	}
 	
-	//根据user_id为参数，删除个人简历；
+
 	public void deleteByUserId(int user_id){
 		
 		Personal_Rsm personal_rsm = new Personal_Rsm();
@@ -175,7 +169,7 @@ public class Personal_RsmDAO{
 
 	}
 	
-	//根据rsm_id为参数，删除个人简历；
+
 	public void deleteByRsmId(int rsm_id){
 		
 		hibernateTemplate.delete(hibernateTemplate.get(Personal_Rsm.class, rsm_id));

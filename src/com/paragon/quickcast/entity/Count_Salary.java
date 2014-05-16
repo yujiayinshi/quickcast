@@ -13,43 +13,43 @@ public class Count_Salary {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private int id;
 	
-	//ITĞĞÒµ
+	//IT
 	@Column(nullable = true)
 	private int it_salary;
 	
-	//µç×ÓĞĞÒµ
+	//ç”µå­
 	@Column(nullable = true)
 	private int electronic_salary;
 	
-	//3GĞĞÒµ
+	//3G
 	@Column(nullable = true)
 	private int thirdgen_salary;
 	
-	//Æû³µÖÆÔì
+	//æ±½è½¦
 	@Column(nullable = true)
 	private int car_salary;
 	
-	//µç×ÓÉÌÎñ
+	//ç”µå­å•†åŠ¡
 	@Column(nullable = true)
 	private int ec_salary;
 	
-	//Éè¼Æ²úÒµ
+	//è®¾è®¡
 	@Column(nullable = true)
 	private int design_salary;
 	
-	//Ò½Ò©
+	//åŒ»è¯
 	@Column(nullable = true)
 	private int medicine_salary;
 	
-	//ÏÖ´úÎïÁ÷Òµ
+	//ç‰©æµä¸š
 	@Column(nullable = true)
 	private int logistics_salary;
 	
-	//½ğÈÚĞĞÒµ
+	//é‡‘è
 	@Column(nullable = true)
 	private int finance_salary;
 	
-	//½¨ÖşÒµ
+	//å»ºç­‘ä¸š
 	@Column(nullable = true)
 	private int architecture_salary;
 

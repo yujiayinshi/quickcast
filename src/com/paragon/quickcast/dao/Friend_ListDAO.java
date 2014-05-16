@@ -28,11 +28,8 @@ public class Friend_ListDAO{
 	@Resource
 	private FriendsGroupDAO friendsgroupdao;
 
-    //全局变量 Array记录HashMap中的前20大元素个数和好友的ID
 	int[] hash_list = new int[20];
 	Friend_List getfriend_list[] = new Friend_List[5];
-	//插入用户新注册信息；
-	//以Friend_List类为传递参数；
 	public boolean insert(Friend_List friend_list){
 		FriendsGroup friendsgroup = new FriendsGroup();
 		//User_Reg user_reg = null;
@@ -121,13 +118,7 @@ public class Friend_ListDAO{
 		hibernateTemplate.deleteAll(list2);
 	}
 	
-	/********
-	 * 
-	 * 以下是hash_map实现过程
-	 * 1.根据self_id查找partner_id，返回值是partner_id
-	 * 
-	 * 
-	 * *********/
+
 	public List queryBySelf_ReturnParID(int self_id){
 		String hql = "Select partner_id FROM Friend_List  as friend_list WHERE friend_list.self_id=?";
 		List l = hibernateTemplate.find(hql, self_id);
@@ -148,7 +139,6 @@ public class Friend_ListDAO{
 		}
 		return Temp_part1;
 	}
-	//按照对象的Rlts_id排序
 	
 		public HashMap hash_indexSelfID(int self_id){
 		HashMap<Integer, Integer> friendscircle = new HashMap<Integer,Integer>();
@@ -164,7 +154,7 @@ public class Friend_ListDAO{
 			Integer key = (Integer)iter.next();
 			if(!friendscircle.containsKey(key)){
 				friendscircle.put(key, 1);
-				System.out.println("好友ID"+key);
+				System.out.println("濂藉弸ID"+key);
 			}
 			else{
 				Integer count_friends = friendscircle.get(key);
@@ -177,7 +167,6 @@ public class Friend_ListDAO{
 		Iterator<Map.Entry<Integer, Integer>> iter1 = set.iterator();
 		while( count_list < 5 && (count_list < set.size())){
 			Map.Entry<Integer, Integer> entry = iter1.next();
-			//setPartner_id得到的是间接好友的ID，setSelf_id得到的是共同好友的个数
 			getfriend_list[count_list] = new Friend_List();
 			getfriend_list[count_list].setRlts_id(entry.getValue());
 			getfriend_list[count_list].setPartner_id(entry.getKey());
@@ -194,7 +183,7 @@ public class Friend_ListDAO{
 		//for(int i = 0; i < 5&&(i<set.size()); i++){
 		for(int i = 0; i < 5; i++){
 			if(getfriend_list[i].getRlts_id() != 0){
-				System.out.println("好友圈的间接好友的个数和好友ID");
+				System.out.println("濂藉弸ID");
 				System.out.println(" "+getfriend_list[i].getRlts_id()+" ");
 				System.out.println(" "+getfriend_list[i].getPartner_id()+" ");
 			}

@@ -25,11 +25,11 @@ public class CountController {
 	@Resource
     private Encoding encoding;
 	
-	//Í³¼ÆÃ¿ÀàÓÃ»§µÄÈËÊı
-	//1 ÇóÖ°Õß
-	//2 ÁÔÍ·
-	//3 ÆóÒµ
-	//4 Î´Ñ¡Àà±ğ
+	//Í³æ ¹æ®ç”¨æˆ·ç±»å‹ç»Ÿè®¡ç”¨æˆ·æ•°
+	//1 æ±‚èŒè€…
+	//2 çŒå¤´
+	//3 å…¬å¸
+	//4 å…¶å®ƒ
 	@RequestMapping(params="method=imp_count_queryByCountUserId")
 	public @ResponseBody String imp_count_queryByCountUserId(){
 		

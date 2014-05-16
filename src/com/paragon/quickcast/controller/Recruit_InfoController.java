@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.paragon.quickcast.dao.ToJson;
 import com.paragon.quickcast.entity.News;
 import com.paragon.quickcast.entity.Recruit_Info;
+import com.paragon.quickcast.entity.User_Reg;
 import com.paragon.quickcast.service.NewsService;
 import com.paragon.quickcast.service.RecruitService;
+import com.paragon.quickcast.service.UserService;
 
-
-//’–∆∏–≈œ¢
 @Controller
 @RequestMapping("/recruitinfo.do")
 public class Recruit_InfoController {
@@ -29,6 +29,8 @@ public class Recruit_InfoController {
     private RecruitService recruitservice;
 	@Resource
 	private NewsService newsservice;
+	@Resource
+	private UserService userservice;
 	@Resource 
 	private Encoding encoding;
 	
@@ -108,7 +110,7 @@ public class Recruit_InfoController {
 	@RequestMapping(params="method=recruitinfo_queryByInfoId")
 	public @ResponseBody String recruitinfo_queryByInfoId(@RequestBody Recruit_Info recruit_info){
 		
-		Recruit_Info info = recruitservice.queryByInfoId(recruit_info.getUser_id());
+		Recruit_Info info = recruitservice.queryByInfoId(recruit_info.getInfo_id());
 		Map data = new HashMap();
 		JSONArray json_result = new JSONArray();		
 	    data.put("info_id", info.getInfo_id());
@@ -119,8 +121,10 @@ public class Recruit_InfoController {
 	    data.put("salary", info.getSalary());
 	    data.put("recruit_num", info.getRecruit_num());
 	    data.put("user_id", info.getUser_id());
+	    User_Reg user = userservice.queryByUserId(info.getUser_id());
+	    data.put("user_type", user.getUser_type());
 	    data.put("recruit_industry", info.getRecruit_industry());
-	    data.put("work_place", info.getRecruit_industry());
+	    data.put("work_place", info.getWork_place());
 	    data.put("etp_name", info.getEtp_name());
 	    json_result.put(data);
 		String result = "{\"recruit_info\":"+ json_result +"}";
@@ -147,6 +151,8 @@ public class Recruit_InfoController {
 	    	data.put("salary", info.getSalary());
 	    	data.put("recruit_num", info.getRecruit_num());
 	    	data.put("user_id", info.getUser_id());
+	    	User_Reg user = userservice.queryByUserId(info.getUser_id());
+		    data.put("user_type", user.getUser_type());
 	    	data.put("recruit_industry", info.getRecruit_industry());
 	    	data.put("work_place", info.getRecruit_industry());
 		    data.put("etp_name", info.getEtp_name());
@@ -176,6 +182,16 @@ public class Recruit_InfoController {
 
 	public void setNewsservice(NewsService newsservice) {
 		this.newsservice = newsservice;
+	}
+	
+	
+
+	public UserService getUserservice() {
+		return userservice;
+	}
+
+	public void setUserservice(UserService userservice) {
+		this.userservice = userservice;
 	}
 
 	public Encoding getEncoding() {

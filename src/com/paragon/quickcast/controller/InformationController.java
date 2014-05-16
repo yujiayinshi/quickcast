@@ -16,6 +16,8 @@ import com.paragon.quickcast.dao.ToJson;
 import com.paragon.quickcast.entity.Etp_Info;
 import com.paragon.quickcast.entity.Hunter_Info;
 import com.paragon.quickcast.entity.Seeker_Info;
+import com.paragon.quickcast.entity.User_Reg;
+import com.paragon.quickcast.service.UserService;
 import com.paragon.quickcast.serviceImpl.EtpinfoServiceImpl;
 import com.paragon.quickcast.serviceImpl.HunterinfoServiceImpl;
 import com.paragon.quickcast.serviceImpl.SeekerinfoServiceImpl;
@@ -24,6 +26,8 @@ import com.paragon.quickcast.serviceImpl.SeekerinfoServiceImpl;
 @RequestMapping("/info.do")
 public class InformationController extends MultiActionController{ 
 	
+	@Resource
+	private UserService userService;
 	@Resource 
 	private SeekerinfoServiceImpl seekerinfoImpl = new SeekerinfoServiceImpl();
 	@Resource 
@@ -35,7 +39,102 @@ public class InformationController extends MultiActionController{
 	
 	
 	
-	//求职者 1 猎头 2 企业 3
+	@RequestMapping(params="method=info_queryByUserId")
+	public @ResponseBody String info_queryByUserId(@RequestBody int user_id){
+		User_Reg userregInstance = userService.queryByUserId(user_id);
+		Map data = new HashMap();
+		JSONArray json_result = new JSONArray();
+		if(userregInstance.getUser_type().equals("1")){
+			data.put("user_name", userregInstance.getUser_name());
+			data.put("eng_name", userregInstance.getEng_name());
+			data.put("cn_tname", userregInstance.getCn_tname());
+			data.put("email", userregInstance.getEmail());
+			data.put("user_type", userregInstance.getUser_type());
+			Seeker_Info seeker_infoInstance = seekerinfoImpl.queryBySeekerUserId(user_id);
+			data.put("info_id", seeker_infoInstance.getInfo_id());
+			data.put("user_id", seeker_infoInstance.getUser_id());
+	    	data.put("age", seeker_infoInstance.getAge());
+	    	data.put("edu_type", seeker_infoInstance.getEdu_type());
+	    	data.put("end_time", seeker_infoInstance.getEnd_time());
+	    	data.put("etp_industry", seeker_infoInstance.getEtp_industry());
+	    	data.put("etp_name", seeker_infoInstance.getEtp_name());
+	    	data.put("gender", seeker_infoInstance.getGender());
+	    	data.put("highest_edu", seeker_infoInstance.getHighest_edu());
+	    	data.put("job_status", seeker_infoInstance.getJob_status());
+	    	data.put("marital_status", seeker_infoInstance.getMarital_status());
+	    	data.put("mobile", seeker_infoInstance.getMobile());
+	    	data.put("seeker_photo", seeker_infoInstance.getSeeker_photo());
+	    	data.put("seeker_profession", seeker_infoInstance.getSeeker_profession());
+	    	data.put("self_intro", seeker_infoInstance.getSelf_intro());
+	    	data.put("start_time", seeker_infoInstance.getStart_time());
+	    	data.put("tech_direction", seeker_infoInstance.getTech_direction());
+	    	data.put("work_place", seeker_infoInstance.getWork_place());
+	    	json_result.put(data);
+		}
+		else  if(userregInstance.getUser_type().equals("2")){
+				data.put("user_name", userregInstance.getUser_name());
+				data.put("eng_name", userregInstance.getEng_name());
+				data.put("cn_tname", userregInstance.getCn_tname());
+				data.put("email", userregInstance.getEmail());
+				data.put("user_type", userregInstance.getUser_type());
+				Hunter_Info info = hunterinfoImpl.queryByHunterUserId(user_id);
+				data.put("info_id", info.getInfo_id());
+				data.put("user_id", info.getUser_id());
+				data.put("business_card", info.getBusiness_card());
+				data.put("certificate", info.getCertificate());
+				data.put("check_status", info.getCheck_status());
+				data.put("etp_intro", info.getEtp_intro());
+				data.put("etp_name", info.getEtp_name());
+				data.put("gender", info.getGender());
+				data.put("hunter_fax", info.getHunter_fax());
+				data.put("mobile", info.getMobile());
+				data.put("msg_addr", info.getMsg_addr());
+				data.put("partner", info.getPartner());
+				data.put("self_intro", info.getSelf_intro());
+				data.put("t_area", info.getT_area());
+				data.put("work_city", info.getWork_place());
+				data.put("work_email", info.getWork_email());
+				data.put("work_phone", info.getWork_phone());
+				data.put("work_time", info.getWork_time());
+				json_result.put(data);
+			}
+		else if(userregInstance.getUser_type().equals("3")){
+		    	data.put("user_name", userregInstance.getUser_name());
+				data.put("eng_name", userregInstance.getEng_name());
+				data.put("cn_tname", userregInstance.getCn_tname());
+				data.put("email", userregInstance.getEmail());
+				data.put("user_type", userregInstance.getUser_type());
+				Etp_Info info = etpinfoImpl.queryByEtpUserId(user_id);
+				data.put("info_id", info.getInfo_id());
+				data.put("user_id", info.getUser_id());
+				data.put("certificate", info.getCertificate());
+				data.put("check_status", info.getCheck_status());
+				data.put("etp_intro", info.getEtp_intro());
+				data.put("etp_name", info.getEtp_name());
+				data.put("msg_addr", info.getMsg_addr());
+				data.put("etp_addr", info.getEtp_addr());
+				data.put("etp_email", info.getEtp_email());
+				data.put("contact_person", info.getContact_person());
+				data.put("etp_industry", info.getEtp_industry());
+				data.put("etp_nature", info.getEtp_nature());
+				data.put("mobile", info.getMobile());
+				data.put("etp_size", info.getEtp_size());
+				json_result.put(data);
+				
+		    }
+		    else{
+		        String result_temp = "error";
+			    result_temp = encoding.encoding(result_temp);							
+			    return result_temp; 
+			}
+		String result = "{\"user_info\":"+ json_result +"}";
+    	String result_temp = "error";
+		result_temp = encoding.encoding(result);							
+		return result_temp;
+	}
+	
+	
+	
 	
 	//Seeker_Info
 	@RequestMapping(params="method=seekerinfo_insert")
@@ -464,8 +563,6 @@ public class InformationController extends MultiActionController{
 	    @RequestMapping(params="method=queryByEtpUserId")
 	    public @ResponseBody String queryByEtpUserId(@RequestBody Etp_Info etp_info){
 	    	Etp_Info info = etpinfoImpl.queryByEtpUserId(etp_info.getUser_id());
-	    	System.out.println("-----------etpinfo_id:"+etp_info.getInfo_id()+"---------");
-			System.out.println("-----------user_id:"+etp_info.getUser_id()+"---------");
 			Map data = new HashMap();
 			JSONArray json_result = new JSONArray();
 			data.put("info_id", info.getInfo_id());
@@ -531,11 +628,15 @@ public class InformationController extends MultiActionController{
 			result_temp = encoding.encoding(result_temp);							
 			return result_temp;
 		    }
+	
+		
+		public UserService getUserService() {
+			return userService;
+		}
 
-		
-		
-		
-		
+		public void setUserService(UserService userService) {
+			this.userService = userService;
+		}
 		
 		public SeekerinfoServiceImpl getSeekerinfoImpl() {
 			return seekerinfoImpl;
@@ -560,6 +661,8 @@ public class InformationController extends MultiActionController{
 		public void setEtpinfoImpl(EtpinfoServiceImpl etpinfoImpl) {
 			this.etpinfoImpl = etpinfoImpl;
 		}
+		
+
 		
 		public Encoding getEncoding() {
 			return encoding;

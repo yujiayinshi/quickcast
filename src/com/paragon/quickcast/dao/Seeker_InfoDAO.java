@@ -20,20 +20,19 @@ public class Seeker_InfoDAO{
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	private Seeker_Info seeker = new Seeker_Info();
-	//插入新的求职者信息；
-	//以Seeker_Info类为传递参数；
+
 	public boolean insert(Seeker_Info seeker_info){
 		hibernateTemplate.save(seeker_info);
 		return true;
 	}
 	
-	//修改求职者个人信息功能
+
     public boolean update(Seeker_Info seeker_info){
     	hibernateTemplate.update(seeker_info);
     	return true;
     }
     
-   //删除个人信息
+
     public boolean delete(Seeker_Info seeker_info){
     	hibernateTemplate.delete(seeker_info);
     	return true;

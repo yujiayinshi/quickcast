@@ -31,7 +31,7 @@ public class Recruit_InfoDAO{
 	public Recruit_Info queryByInfoId(int info_id){
 		Recruit_Info recruit_info  = null;
  		Iterator iterator = null;
- 		List l = (List)this.hibernateTemplate.find("FROM Recruit_Info as recruit_info WHERE etp_info.info_id=?",new Integer(info_id));
+ 		List l = (List)this.hibernateTemplate.find("FROM Recruit_Info as recruit_info WHERE recruit_info.info_id=?",new Integer(info_id));
  		iterator = l.iterator();
  		if(iterator.hasNext())
  		{
@@ -48,9 +48,7 @@ public class Recruit_InfoDAO{
 		return true;
 	}
 	
-	//查找用户信息
-	//传递参数为User_ID
-	//根据User_ID找到Recruit_Info的全部信息；
+
 	public List queryByUserId(int user_id){
 		
 		String hql = "FROM Recruit_Info as recruit_info WHERE recruit_info.user_id=?";

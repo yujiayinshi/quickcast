@@ -27,10 +27,9 @@ public class Seeker_Info {
 	
 	private String marital_status;
 	
-	//最高学历
+
 	private String highest_edu;
 	
-	//教育类型（统招全日）
 	private String edu_type;
 	
 	@Column(name="start_time",nullable=false)
@@ -50,15 +49,14 @@ public class Seeker_Info {
 	@Column(name="etp_name")
 	private String etp_name;
 	
-	//目前职位名称
+
 	@Column(name="seeker_profession")
 	private String seeker_profession;
 	
-	//公司所在行业
+
 	@Column(name="etp_industry")
 	private String etp_industry;
 	
-	//目前职能方向
 	@Column(name="tech_direction")
 	private String tech_direction;
 	

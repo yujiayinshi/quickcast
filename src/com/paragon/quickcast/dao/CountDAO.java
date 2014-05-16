@@ -12,7 +12,6 @@ import com.paragon.quickcast.entity.Count_Rsmhandle;
 import com.paragon.quickcast.entity.Count_User;
 import com.paragon.quickcast.entity.Count_WorkPlace;
 
-//此类为统计数据专用
 
 @Repository
 public class CountDAO {
@@ -21,14 +20,13 @@ public class CountDAO {
 	private HibernateTemplate hibernateTemplate;
 	
 	
-	//统计用户数
 	public Count_User queryBycountUserId(int id){
 		
 		return hibernateTemplate.get(Count_User.class, id);
 		
 	}
 	
-	//统计简历处理率
+	//统锟狡硷拷锟斤拷锟斤拷锟斤拷
 	public Count_Rsmhandle queryByCountRsmhandleEtpId(int etp_id){
 		Count_Rsmhandle count_rsmhandle = null;
 		String hql = "FROM Count_Rsmhandle as count_rsmhandle WHERE count_rsmhandle.etp_id=?";
